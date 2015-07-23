@@ -15,11 +15,13 @@ $('#myButton').click(function() {
     
 })
 */
+var alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var timer, count = 60;
+var correct, wrong;
 
-var timer, count = 60, onpause = 0;
+
 $('#btn_start').click(function() {
-    
-    window.onpause = 0;
+    window.correct = window.wrong = 0;
     window.timer = setInterval(function() {
         //console.log("hi, " + window.count);
         window.count -= 1;
@@ -30,24 +32,19 @@ $('#btn_start').click(function() {
     function checkToStop() {
         if (window.count < 1) {
             clearInterval(window.timer);
+            alert("Time's up!");
         }
     }
-    
 })
-
-$('#btn_pause').click(function() {
-    window.onpause = 1;
-    clearInterval(window.timer);    
-})
-
 
 $('#btn_reset').click(function() {
 
     $('#p_timer').text("1:00"); 
-    
-    if(window.onpause == 0)
-        clearInterval(window.timer);
+    clearInterval(window.timer);
     window.count = 60;
+    
+    document.getElementById("p_alpha").style.color = "green";   
+    $('#p_alpha').text(alphabet[Math.floor(Math.random()*100)%52]);
     
 })
 
@@ -59,8 +56,18 @@ $('#btn_reset').click(function() {
 $("body").keypress(function(event) {
     
     var which =  event.which;
-    
-    console.log("key pressed: "+which);       
+   
+    if(which == $("p:first").text().charCodeAt(0))
+    {
+        window.correct++;
+        document.getElementById("p_alpha").style.color = "green";   
+        $('#p_alpha').text(alphabet[Math.floor(Math.random()*100)%52]);
+    }
+    else
+    {
+         window.wrong++;
+        document.getElementById("p_alpha").style.color = "red";   
+    }
 })
 
 
