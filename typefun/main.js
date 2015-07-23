@@ -1,26 +1,3 @@
-console.log("main.js hello");
-
-var x = 1;
-
-while(x < 100)
-{
-    console.log(x);
-    x*=2;
-}
-
-function fab(x)
-{
-    if(x==1 || x==2)
-        return 1;
-    return fab(x-1)+fab(x-2); 
-}
-
-for(var i=1; i<=10 ; i++)
-{
-    console.log(i+":"+fab(i));   
-    
-}
-
 /*
  * Event: button on click
  */
@@ -39,29 +16,33 @@ $('#myButton').click(function() {
 })
 */
 
-$('#myButton').click(function() {
-    //get
-    var n = parseInt($('#input').val()); //int
-    console.log("n = " + n);
-    
-    //put
-    var outputField = $('#output'); //p object
-    var output = "";
-    for(var i = 1; i <= n; i++)
-    {
-        var temp = "";
-        for(var j = 1; j <= i; j++)
-        {
-               temp += "*";
-        }
-        temp += '<br/>';
-        output += temp;
-            
-    }
+var timer;
+$('#btn_start').click(function() {
 
-    outputField.html(output); //!!!!html
+    
+    var count = 60;
+    window.timer = setInterval(function() {
+        console.log("hi, " + count);
+        count -= 1;
+        $('#p_timer').text("0:"+count); 
+        checkToStop();
+    }, 1000); 
+    
+    function checkToStop() {
+        if (count < 1) {
+            clearInterval(window.timer);
+        }
+    }
     
 })
+
+$('#btn_reset').click(function() {
+
+    $('#p_timer').text("1:00"); 
+    clearInterval(window.timer);
+    
+})
+
 
 /*
  * Event: listen to key press  body: 全域/
@@ -78,7 +59,7 @@ $("body").keypress(function(event) {
 /*
  * Timer
  */
-var count = 0;
+/*var count = 0;
 var timer = setInterval(function() {
     console.log("hi, " + count);
     window.count += 1;
@@ -89,4 +70,4 @@ function checkToStop() {
     if (window.count >= 10) {
         clearInterval(window.timer);
     }
-}
+}*/

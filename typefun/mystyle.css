@@ -1,7 +1,15 @@
 body{
 	/*text-align: center;
 	font-family: 'Poiret One', cursive;*/
+    
+    margin:0;
+    padding:0;
 	background-image:url('pic/green.jpg');
+    -moz-background-size: cover;
+    background-size: cover;
+    
+    
+	
 }
 
 #wrapper{
@@ -17,7 +25,7 @@ body{
 	color: green;
 }
 
-#rcorners {
+.rcorners {
     font-family: 'Poiret One', cursive;
 	border-radius: 50px;
     border: 2px solid #8AC007;
