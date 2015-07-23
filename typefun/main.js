@@ -15,12 +15,12 @@ $('#myButton').click(function() {
     
 })
 */
-var alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var timer, count = 60;
 var correct, wrong;
 
 
-$('#btn_start').click(function() {
+$('#btn_start').click(function () {
     window.correct = window.wrong = 0;
     window.timer = setInterval(function() {
         //console.log("hi, " + window.count);
@@ -32,7 +32,7 @@ $('#btn_start').click(function() {
     function checkToStop() {
         if (window.count < 1) {
             clearInterval(window.timer);
-            alert("Time's up!");
+            alert("correct : "+window.correct+"   wrong:"+window.wrong);
         }
     }
 })
@@ -45,6 +45,10 @@ $('#btn_reset').click(function() {
     
     document.getElementById("p_alpha").style.color = "green";   
     $('#p_alpha').text(alphabet[Math.floor(Math.random()*100)%52]);
+    
+    window.correct = 0;
+    window.wrong = 0;
+   
     
 })
 
