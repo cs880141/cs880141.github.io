@@ -16,30 +16,38 @@ $('#myButton').click(function() {
 })
 */
 
-var timer;
+var timer, count = 60, onpause = 0;
 $('#btn_start').click(function() {
-
     
-    var count = 60;
+    window.onpause = 0;
     window.timer = setInterval(function() {
-        console.log("hi, " + count);
-        count -= 1;
-        $('#p_timer').text("0:"+count); 
+        //console.log("hi, " + window.count);
+        window.count -= 1;
+        $('#p_timer').text("0:"+window.count); 
         checkToStop();
     }, 1000); 
     
     function checkToStop() {
-        if (count < 1) {
+        if (window.count < 1) {
             clearInterval(window.timer);
         }
     }
     
 })
 
+$('#btn_pause').click(function() {
+    window.onpause = 1;
+    clearInterval(window.timer);    
+})
+
+
 $('#btn_reset').click(function() {
 
     $('#p_timer').text("1:00"); 
-    clearInterval(window.timer);
+    
+    if(window.onpause == 0)
+        clearInterval(window.timer);
+    window.count = 60;
     
 })
 
